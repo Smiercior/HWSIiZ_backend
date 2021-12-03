@@ -1,3 +1,33 @@
 from django.db import models
+from Auth import User
 
-# Create your models here.
+
+class Project(models.Model):
+    title = models.CharField(max_length=128)
+    description = models.TextField()
+    leader = models.ForeignKey(User, on_delete=models.CASCADE)
+    members = models.ManyToManyField(User, related_name='members', blank=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Task(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    description = models.TextField()
+    member = models.ForeignKey(User, blank=True, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.description
+
+
+class Meeting(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    date = models.DateTimeField(blank=True, null=True)
+    time = models.DurationField(blank=True, null=True)
+    name = models.CharField(max_length=128)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
