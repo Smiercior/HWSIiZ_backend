@@ -1,5 +1,17 @@
 from django.db import models
-from Auth import User
+from django.contrib.auth.models import User
+# from Auth import User
+
+
+class Ability(models.Model):
+    SKILL_LEVEL_CHOICES = (
+        ('beginner', 'beginner'),
+        ('intermediate', 'intermediate'),
+        ('advanced', 'advanced'),
+        ('expert', 'expert'),
+    )
+    name = models.CharField(max_length=128)
+    level = models.CharField(max_length=16, choices=SKILL_LEVEL_CHOICES)
 
 
 class Project(models.Model):
@@ -7,6 +19,7 @@ class Project(models.Model):
     description = models.TextField()
     leader = models.ForeignKey(User, on_delete=models.CASCADE)
     members = models.ManyToManyField(User, related_name='members', blank=True)
+    required_abilities = models.ManyToManyField(Ability, related_name='required_abilities', blank=True, null=True)
 
     def __str__(self):
         return self.title
