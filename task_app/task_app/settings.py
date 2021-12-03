@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     # 3rd Party Apps
     'rest_framework', # new
     'rest_framework.authtoken', # new
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
 
     # Local app
     'Auth',
+    'tasks',
 ]
 
 MIDDLEWARE = [
