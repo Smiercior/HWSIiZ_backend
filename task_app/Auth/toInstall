@@ -1,0 +1,3 @@
+pip install django djangorestframework django-rest-auth django-allauth django-cors-headers
+localhost:8000/auth/auth/login/
+localhost:8000/auth/auth/register/
