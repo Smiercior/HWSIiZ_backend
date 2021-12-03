@@ -122,7 +122,10 @@ REST_FRAMEWORK = {
     'rest_framework.authentication.TokenAuthentication',
 ],
 }
-
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'Auth.serializers.UserSerializer',
+}
+ACCOUNT_ADAPTER = 'Auth.adapter.CustomAccountAdapter'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
